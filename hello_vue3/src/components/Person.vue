@@ -2,41 +2,37 @@
     <div class="person">
       <h2>姓名:{{ name }}</h2>
       <h2>年龄:{{ age }}</h2>
-      <button @click="changeName">修改名字</button>
+      <h2>地址:{{ address }}</h2>
       <button @click="changeAge">修改年龄</button>
+      <button @click="changeName">修改姓名</button>
       <button @click="showTel">查看联系方式</button>
     </div>
   
   </template>
   
-  <script>
-    export default{
+  <script lang="ts">
+    export default {
       name:'Person',
-      setup(){
-        //数据
-        let name = '张三'
-        let age = 18
-        let tel = '11231564564'
-        
-        //方法
-        function changeAge(){
-            name = 'zhang-san'
-        }
-        function changeName(){
-            age += 1  
-        }
-        function showTel(){
-            alert(tel)
-        }
-
-        //return {name,age,changeAge,changeName,showTel}
-        
-        // setup的返回值也可以是一个渲染函数
-        return ()=>'哈哈'
-      }
-      
     }
-  
+  </script>
+
+  <script lang='ts' setup>
+    //数据
+    let name = '张三'
+    let age = 18
+    let tel = '1564156156'
+    let address = '北京市'
+
+    //方法
+    function changeName() {
+        name = 'zhang-san'
+    }
+    function changeAge() {
+        age += 1
+    }
+    function showTel() {
+        alert(tel)
+    }
   </script>
   
   <style>
@@ -47,7 +43,7 @@
       padding: 20px;
     }
     button{
-        margin:0 5px;
+        margin: 0 10px;
     }
    
   </style>
