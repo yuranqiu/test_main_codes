@@ -1,6 +1,5 @@
 <template>
     <div class="person">
-      <h1>你好</h1>
       <h2>姓名:{{ name }}</h2>
       <h2>年龄:{{ age }}</h2>
       <button @click="changeName">修改名字</button>
@@ -8,31 +7,31 @@
       <button @click="showTel">查看联系方式</button>
     </div>
   
-  
-  
   </template>
   
   <script>
     export default{
       name:'Person',
-      data(){
-        return{
-            name:'张三',
-            age:18,
-            tel:'12346589798'
+      setup(){
+        //数据
+        let name = '张三'
+        let age = 18
+        let tel = '11231564564'
+        
+        //方法
+        function changeAge(){
+            name = 'zhang-san'
         }
-      },
-      methods:{
-        showTel(){
-            alert(this.tel)
-        },
-        changeName(){
-            this.name = 'zhang-san'
-        },
-        changeAge(){
-            this.age += 1
+        function changeName(){
+            age += 1  
         }
+        function showTel(){
+            alert(tel)
+        }
+
+        return {name,age,changeAge,changeName,showTel}
       }
+      
     }
   
   </script>
