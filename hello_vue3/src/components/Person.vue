@@ -10,25 +10,21 @@
   
   </template>
   
-  <script lang="ts">
-    export default {
-      name:'Person',
-    }
-  </script>
+    <script lang='ts' setup name ="Person">
+    import {ref} from 'vue'
 
-  <script lang='ts' setup>
     //数据
-    let name = '张三'
-    let age = 18
+    let name = ref('张三')
+    let age = ref(18)
     let tel = '1564156156'
     let address = '北京市'
 
     //方法
     function changeName() {
-        name = 'zhang-san'
+        name.value = 'zhang-san'
     }
     function changeAge() {
-        age += 1
+        age.value += 1
     }
     function showTel() {
         alert(tel)
