@@ -2,14 +2,8 @@
     <Person></Person>
 </template>
 
-<script>
+<script lang="ts" setup name="App">
   import Person from './components/Person.vue';
-  export default{
-    name:'App',
-    components:{
-      Person
-    }
-  }
-
+  
 </script>
 
