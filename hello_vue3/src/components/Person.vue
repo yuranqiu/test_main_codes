@@ -1,51 +1,41 @@
 <template>
     <div class="person">
-    <h1>情况五:监视上述多个数据</h1>
-    <h2>姓名：{{ person.name }}</h2>
-    <h2>年龄:{{ person.age }}</h2>
-    <h2>汽车:{{ person.car.c1}}、{{ person.car.c2 }}</h2>
-    <button @click="changeName">修改名字</button>
-    <button @click="changeAge">修改年龄</button>
-    <button @click="changeC1">修改第一台车</button>
-    <button @click="changeC2">修改第二台车</button>
-    <button @click="changeCar">修改整个车</button>
+    <h2>需求：当水温达到60，水位达到80，给服务器发送请求</h2>
+    <h2>当前水温为:{{ temp }}</h2>
+    <h2>当前水位为:{{ height }}</h2>
+    <button @click="changeTemp">点我水温+10</button>
+    <button @click="changeHeight">点我水位+10</button>
     </div>
 </template>
   
 <script lang='ts' setup name ="Person">
-    import {reactive,watch} from 'vue'
+    import {ref,watch,watchEffect} from 'vue'
     //数据
-    let person = reactive({
-        name:"张三",
-        age:18,
-        car:{
-            c1:'bench',
-            c2:'bmw'
+    let temp = ref(10)
+    let height =ref(0)
+    //方法
+    function changeTemp(){
+        temp.value += 10
+    }
+    function changeHeight(){
+        height.value += 10
+    }
+
+    // 监视 -- watch实现
+    // watch([temp,height],(value)=>{
+    //     // 从value中获取最新数据
+    //     let [newTemp,newHeight] = value
+    //     if(newTemp>=60||newHeight>=80){
+    //         console.log('发送请求')
+    //     }
+    // })
+
+    // 监视 -- watchEffect实现
+    watchEffect(()=>{
+        if( temp.value>=60 || height.value >= 80){
+            console.log('发送请求')
         }
     })
-    //方法
-    function changeName(){
-        person.name += '~'
-    }
-    function changeAge(){
-        person.age += 1
-    }
-    function changeC1(){
-       person.car.c1 = 'aodi'
-    }
-    function changeC2(){
-       person.car.c2 = 'auto'
-    }
-    function changeCar(){
-        person.car = {c1:'雅迪',c2:'艾玛'}
-    }
-    
-    //监视,情况五:
-
-    watch([()=>person.car.c1,()=>person.name],(newValue,oldValue)=>{
-        console.log('person.car变化了',newValue,oldValue)
-    },{deep:true})
-    
 </script>
   
 <style scoped>
