@@ -1,6 +1,6 @@
 <template>
     <div class="person">
-    <h1>情况三:监视【reactive】定义的【对象】数据</h1>
+    <h1>情况五:监视上述多个数据</h1>
     <h2>姓名：{{ person.name }}</h2>
     <h2>年龄:{{ person.age }}</h2>
     <h2>汽车:{{ person.car.c1}}、{{ person.car.c2 }}</h2>
@@ -40,9 +40,9 @@
         person.car = {c1:'雅迪',c2:'艾玛'}
     }
     
-    //监视,情况四:监视响应式对象中的某个属性，且该属性是基本类型，要写成函数式
-    //watch的第一个参数:被监视的数据，第二个参数:监视的回调,第三个参数:配置对象
-    watch(()=>person.car,(newValue,oldValue)=>{
+    //监视,情况五:
+
+    watch([()=>person.car.c1,()=>person.name],(newValue,oldValue)=>{
         console.log('person.car变化了',newValue,oldValue)
     },{deep:true})
     
